@@ -64,7 +64,7 @@ app.post('/submitFormToMongoDB', async (req, res) => {
         // Send email notification
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: ['teamgenzix@gmail.com', 'yerramsettydiwakar007@gmail.com'],
+            to: ['teamgenzix@gmail.com', 'yerramsettydiwakar007@gmail.com', 'yvk2402@gmail.com', 'sri.angajala911@gmail.com'],
             subject: 'New Form Submission',
             text: `New form submission:
                 Name: ${name}
