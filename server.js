@@ -3,20 +3,21 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
-const dotenv = require("dotenv");
-
-dotenv.config(); // Load environment variables from .env file
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = 4000;
+
+// Replace these with your actual credentials and connection string
+const MONGODB_URI = "mongodb+srv://teamgenzix:ITDSteeIc30cmM5t@cluster0.0s02h1h.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const EMAIL_USER = "thegenzix@gmail.com";
+const EMAIL_PASS = "nwzl avov smlw drkk";
 
 // Middleware
 app.use(cors());
 app.use(bodyParser.json());
 
 // MongoDB connection
-const mongoUri = process.env.MONGODB_URI;
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.error("MongoDB connection error:", err));
 
@@ -40,8 +41,8 @@ const Form = mongoose.model("Form", formSchema);
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
+        user: EMAIL_USER,
+        pass: EMAIL_PASS
     }
 });
 
@@ -63,7 +64,7 @@ app.post('/submitFormToMongoDB', async (req, res) => {
 
         // Send email notification
         const mailOptions = {
-            from: process.env.EMAIL_USER,
+            from: EMAIL_USER,
             to: ['teamgenzix@gmail.com', 'yerramsettydiwakar007@gmail.com'],
             subject: 'New Form Submission',
             text: `New form submission:
