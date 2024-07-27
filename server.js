@@ -96,6 +96,11 @@ app.get('/', (req, res) => {
     res.send(`Server is running on http://localhost:${PORT}`);
 });
 
+// Catch-all route for undefined endpoints
+app.use((req, res, next) => {
+    res.status(404).send("The resource you are looking for has been removed, had its name changed, or is temporarily unavailable.");
+});
+
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
